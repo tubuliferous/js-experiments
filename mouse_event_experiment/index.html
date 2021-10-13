@@ -4,40 +4,40 @@
     </head>
 
     <body>
-
-
-    <p class="timertext" 
-        style="font-size: 1.5rem;color: 'white'">
-        You are idle for
-        <span class="secs"></span> seconds.
-    </p>
+        <p class="timertext" 
+            style="font-size: 1.5rem;color: 'white'">
+            You are idle for
+            <span class="secs"></span> seconds.
+        </p>
 
         <script type="text/javascript">
-            // Code take from:    
-            // https://www.geeksforgeeks.org/how-to-detect-idle-time-in-javascript/
-            // https://dev.to/leonardoschmittk/how-to-make-a-mouse-ripple-click-effect-with-css-js-and-html-in-2-steps-2fcf 
+            /*  Code taken from:    
+            
+                https://www.geeksforgeeks.org/how-to-detect-idle-time-in-javascript/
+                https://dev.to/leonardoschmittk/how-to-make-a-mouse-ripple-click-effect-with-css-js-and-html-in-2-steps-2fcf 
+            */
 
             let timer, currSeconds = 0;
   
             function resetTimer() {
 
-                /* Hide the timer text */
+                // Hide the timer text
                 document.querySelector(".timertext")
                         .style.display = 'none';
 
-                /* Clear the previous interval */
+                // Clear the previous interval
                 clearInterval(timer);
 
-                /* Reset the seconds of the timer */
+                // Reset the seconds of the timer
                 currSeconds = 0;
 
-                /* Set a new interval */
+                // Set a new interval
                 timer = 
                     setInterval(startIdleTimer, 1000);
             }       
 
-            // // Define the events that
-            // // would reset the timer
+            // Define the events that
+            // will reset the timer
             window.onload = resetTimer;
             window.onmousemove = resetTimer;
             // window.onmousedown = resetTimer;
@@ -46,17 +46,14 @@
             // window.onkeypress = resetTimer;
     
             function startIdleTimer() {
-                
-                /* Increment the
-                    timer seconds */
+                // Increment the timer seconds
                 currSeconds++;
     
-                /* Set the timer text
-                    to the new value */
+                // Set the timer text to the new value
                 document.querySelector(".secs")
                     .textContent = currSeconds;
     
-                /* Display the timer text */
+                // Display the timer text
                 document.querySelector(".timertext")
                     .style.display = 'block';
             }
