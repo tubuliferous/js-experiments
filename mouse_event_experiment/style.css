@@ -1,0 +1,27 @@
+body {
+    background-color: #1E1E1E;
+}
+
+.ripple {
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    position: fixed;
+    border-radius: 50%;
+    border: 1px solid #ffffff59;
+}
+
+.secs {
+    color: #FFFFFF;
+}
+
+.timertext {
+    color: white;
+}
+ 
+@keyframes ripple-effect {
+    to {
+        transform:scale(10);
+        opacity: 0.01;
+    }
+}

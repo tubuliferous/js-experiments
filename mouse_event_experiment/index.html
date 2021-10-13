@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+
+    <p class="timertext" 
+        style="font-size: 1.5rem;color: 'white'">
+        You are idle for
+        <span class="secs"></span> seconds.
+    </p>
+
+        <script type="text/javascript">
+            // Code take from:    
+            // https://www.geeksforgeeks.org/how-to-detect-idle-time-in-javascript/
+            // https://dev.to/leonardoschmittk/how-to-make-a-mouse-ripple-click-effect-with-css-js-and-html-in-2-steps-2fcf 
+
+            let timer, currSeconds = 0;
+  
+            function resetTimer() {
+
+                /* Hide the timer text */
+                document.querySelector(".timertext")
+                        .style.display = 'none';
+
+                /* Clear the previous interval */
+                clearInterval(timer);
+
+                /* Reset the seconds of the timer */
+                currSeconds = 0;
+
+                /* Set a new interval */
+                timer = 
+                    setInterval(startIdleTimer, 1000);
+            }       
+
+            // // Define the events that
+            // // would reset the timer
+            window.onload = resetTimer;
+            window.onmousemove = resetTimer;
+            // window.onmousedown = resetTimer;
+            // window.ontouchstart = resetTimer;
+            // window.onclick = resetTimer;
+            // window.onkeypress = resetTimer;
+    
+            function startIdleTimer() {
+                
+                /* Increment the
+                    timer seconds */
+                currSeconds++;
+    
+                /* Set the timer text
+                    to the new value */
+                document.querySelector(".secs")
+                    .textContent = currSeconds;
+    
+                /* Display the timer text */
+                document.querySelector(".timertext")
+                    .style.display = 'block';
+            }
+
+
+            document.onclick = () => applyCursorRippleEffect(event); 
+
+            function applyCursorRippleEffect(e) {
+                const ripple = document.createElement("div");
+
+                ripple.className = "ripple";
+                document.body.appendChild(ripple);
+
+                ripple.style.left = `${e.clientX}px`;
+                ripple.style.top = `${e.clientY}px`; 
+                ripple.style.animation = "ripple-effect .3s  linear";
+                ripple.onanimationend = () => document.body.removeChild(ripple);
+            }
+
+            document.onmousemove = () => {
+                // applyCursorRippleEffect(event);
+                if (currSeconds >= 5){
+                    setInterval(applyCursorRippleEffect(event), 10);
+                    resetTimer(); 
+                }
+            }
+
+        </script>
+    </body>
+
+</html>
